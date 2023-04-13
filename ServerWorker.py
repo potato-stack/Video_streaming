@@ -227,9 +227,6 @@ class ServerWorker:
 				except:					
 					print("Connection Error")
 					
-					#print('-'*60)
-					#traceback.print_exc(file=sys.stdout)
-					#print('-'*60)
 
 	def makeRtp(self, payload, frameNbr):
 		"""RTP-packetize the video data."""
@@ -251,8 +248,6 @@ class ServerWorker:
 		"""Send RTSP reply to the client."""
 				
 		if code == self.OK_200:
-			# name = input("enter something: ")
-			#print("200 OK")
 			
 			reply = 'RTSP/1.0 200 OK\nCSeq: ' + seq + '\nSession: ' + str(self.clientInfo['session'])
 			if requestType == self.LOAD:				
