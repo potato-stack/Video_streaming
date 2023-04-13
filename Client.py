@@ -27,9 +27,10 @@ button_config = {
 			'height': 1,
 }
 class Client:
-	INIT = 10
-	READY = 11
-	PLAYING = 12
+	LOAD = 10
+	INIT = 11
+	READY = 12
+	PLAYING = 13
 	
 	
 	SETUP = 0
@@ -39,9 +40,8 @@ class Client:
 	STARTAGAIN = 4
 	SPEEDUP = 5
 	SLOWDOWN = 6
-	DESCRIBE = 7
-	LOAD = 8
-	REWIND = 9
+	DESCRIBE = 7	
+	REWIND = 8
 
 	state = LOAD
 	
@@ -286,11 +286,11 @@ class Client:
 					currFrameNbr = rtpPacket.seqNum()
 
 					#print ("Current Seq Num: " + str(currFrameNbr))
-					print ("current frame number: ", currFrameNbr)
+					
 					self.recv_packet_count += 1
 										
 					if currFrameNbr > self.frameNbr or self.requestSent == self.STARTAGAIN or self.requestSent == self.REWIND: # Discard the late packet
-
+						print ("current frame number: ", currFrameNbr)
 						self.frameNbr = currFrameNbr
 
 						self.updateMovie(self.writeFrame(rtpPacket.getPayload()))
@@ -339,7 +339,7 @@ class Client:
 	def updateMovie(self, imageFile):
 		"""Update the image file as video frame in the GUI."""
 		#TODO
-		photo = ImageTk.PhotoImage(Image.open(imageFile))
+		photo = ImageTk.PhotoImage(Image.open(imageFile)) # type: ignore
 
 		self.label.configure(image = photo, height=288) 
 

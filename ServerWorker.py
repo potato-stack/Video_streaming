@@ -194,7 +194,7 @@ class ServerWorker:
 		# Process SLOWDOWN request
 		elif requestType == self.SLOWDOWN:
 			if self.state != self.INIT:
-				if self.curSpeedIndex < 2: 
+				if self.curSpeedIndex < 4: 
 					self.curSpeedIndex = self.curSpeedIndex + 1
 					self.SPEED = self.speeds[self.curSpeedIndex]				
 				
